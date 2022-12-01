@@ -4,7 +4,7 @@ It's [Advent of Code 2022](https://adventofcode.com/). No funny business this ye
 
 ## Diary
 
-- Day 1 &mdash; 
+- Day 1 &mdash; Calorie counting &mdash; the usual kind of warmup, with the only real issue being parsing the 'paragraph'-style input. For the main task, I initially had a silly function simply taking the max, then refactored to sum the top `n` elves.
 
 
 ## Previous years
