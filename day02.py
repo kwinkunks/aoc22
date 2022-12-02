@@ -1,5 +1,5 @@
-from typing import List
-from collections import Counter
+from typing import List, Callable
+
 
 RAW = """A Y
 B X
@@ -16,26 +16,53 @@ DRAWS_WITH = {'A': 'X', 'B': 'Y', 'C': 'Z'}
 BEATEN_BY = {'A': 'Y', 'B': 'Z', 'C': 'X'}
 VALUES = {'X': 1, 'Y': 2, 'Z': 3}
 
-def one_game(moves: List[str]) -> int:
-    v = VALUES[moves[1]]
+def play_one_game(moves: List[str]) -> int:
+    """Play a game of rock, paper, scissors."""
+    value = VALUES[moves[1]]
     if moves[1] == BEATEN_BY[moves[0]]:
-        s =  6
+        score =  6
     elif moves[1] == DRAWS_WITH[moves[0]]:
-        s = 3
+        score = 3
     else:
-        s = 0
-    return v + s
+        score = 0
+    return value + score
 
-assert one_game(['A', 'Y']) == 8
+assert play_one_game(['A', 'Y']) == 8
 
 
-def play_games(games: List[List[str]]) -> int:
-    return sum(one_game(g) for g in games)
+def play_games(games: List[List[str]], func: Callable) -> int:
+    """
+    Play all the games.
+    
+    Refactored for Part 2 to take a game-playing function.
+    """
+    return sum(func(g) for g in games)
 
-assert play_games(TEST) == 15
+assert play_games(TEST, play_one_game) == 15
+
+
+# Hacky way to map each score code letter to its range of scores (indices).
+SCORES = '-XXXYYYZZZ'
+
+def play_one_outcome(game: List[str]) -> int:
+    """
+    Play a game with a fixed outcome.
+    
+    Not going to overthink this; just try all the moves until we get the
+    required outcome.
+    """
+    goal_outcome = game[1]
+    for move in 'XYZ':
+        score = play_one_game([game[0], move])
+        if goal_outcome == SCORES[score]:
+            return score
+
+assert play_one_outcome(['A', 'Y']) == 4
+assert play_games(TEST, play_one_outcome) == 12
 
 
 if __name__ == "__main__":
     with open('data/day02.txt') as f:
         games = read_input(f.read())
-    print('Part 1:', play_games(games))
+    print('Part 1:', play_games(games, play_one_game))
+    print('Part 2:', play_games(games, play_one_outcome))
