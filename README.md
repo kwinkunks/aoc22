@@ -9,6 +9,12 @@ It's [Advent of Code 2022](https://adventofcode.com/). No funny business this ye
 - Day 2 &mdash; Rock paper scissors &mdash; slightly fiddly RPS game, but the non-overlapping scores allow a hacky approach to Part 2, which essentially wants the inverse problem: the move corresponding to a given outcome. Used [GitHub Codespaces](https://github.com/features/codespaces) for the first time.
 
 
+## Things I learned about
+
+- [GitHub Codespaces](https://github.com/features/codespaces) is pretty cool
+- [PEP 585](https://peps.python.org/pep-0585/) and type hinting since Python 3.9
+
+
 ## Previous years
 
 [2021](https://github.com/kwinkunks/aoc21)  |  [2020](https://github.com/kwinkunks/aoc20)  |  [2019](https://github.com/kwinkunks/aoc19)  |  [2018](https://github.com/kwinkunks/aoc18)
