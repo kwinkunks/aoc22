@@ -56,6 +56,7 @@ def play_one_outcome(game: List[str]) -> int:
         score = play_one_game([game[0], move])
         if goal_outcome == SCORES[score]:
             return score
+    raise ValueError('No move found for outcome', game)
 
 assert play_one_outcome(['A', 'Y']) == 4
 assert play_games(TEST, play_one_outcome) == 12
