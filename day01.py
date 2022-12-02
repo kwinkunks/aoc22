@@ -1,5 +1,7 @@
-from typing import List
-
+"""
+Advent of Code 2022
+Day 1
+"""
 
 RAW = """1000
 2000
@@ -16,18 +18,18 @@ RAW = """1000
 
 10000"""
 
-def read_input(raw: str) -> List[List[int]]:
+def read_input(raw: str) -> list[list[int]]:
     """Parse the input into a list of lists of ints."""
     return [[int(n) for n in r.split()] for r in raw.split('\n\n')]
 
 TEST = read_input(RAW)
 
 
-def elf_calories(elves: List[List[int]]) -> List[int]:
+def elf_calories(elves: list[list[int]]) -> list[int]:
     """Sum the snacks for each elf."""
     return [sum(elf) for elf in elves]
 
-def sum_top(numbers: List[int], n: int=1) -> int:
+def sum_top(numbers: list[int], n: int=1) -> int:
     """Sum the top n numbers. Refactored after Part 2."""
     return sum(sorted(numbers)[-n:])
 
