@@ -45,6 +45,18 @@ def get_message(stacks):
 assert get_message(make_moves(STACKS, MOVES)) == 'CMZ'
 
 
+def make_moves_9001(stacks, moves):
+    for n, fra, til in moves:
+        grab = stacks[fra][:n]
+        stacks[fra] = stacks[fra][n:]
+        stacks[til] = grab + stacks[til]
+    return stacks
+
+STACKS, MOVES = read(RAW)
+
+assert get_message(make_moves_9001(STACKS, MOVES)) == 'MCD'
+
+
 if __name__ == "__main__":
 
     with open('data/day05.txt') as f:
@@ -52,3 +64,10 @@ if __name__ == "__main__":
 
     part1 = get_message(make_moves(stacks, moves))
     print('Part 1:', part1)
+
+    # Mutation!
+    with open('data/day05.txt') as f:
+        stacks, moves = read(f.read())
+
+    part2 = get_message(make_moves_9001(stacks, moves))
+    print('Part 2:', part2)
