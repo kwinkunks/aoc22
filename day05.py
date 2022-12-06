@@ -28,34 +28,22 @@ def read(raw) -> Iterable:
         moves.append(tuple(map(int, row.split()[1::2])))
     return [''] + [s.strip() for s in stacks], moves
 
-STACKS, MOVES = read(RAW)
-
-
-def make_moves(stacks, moves):
-    stacks = stacks.copy()
-    for n, fra, til in moves:
-        for _ in range(n):
-            stacks[til] = stacks[fra][0] + stacks[til]
-            stacks[fra] = stacks[fra][1:]
-    return stacks
-
-def get_message(stacks):
-    return ''.join(stack[:1] for stack in stacks)
-
-assert get_message(make_moves(STACKS, MOVES)) == 'CMZ'
-
-
-def make_moves_9001(stacks, moves):
+def make_moves(stacks, moves, singly=False):
     stacks = stacks.copy()
     for n, fra, til in moves:
         grab = stacks[fra][:n]
         stacks[fra] = stacks[fra][n:]
-        stacks[til] = grab + stacks[til]
+        stacks[til] = grab[::-1 if singly else 1] + stacks[til]
     return stacks
+
+def get_message(stacks):
+        return ''.join(stack[:1] for stack in stacks)
 
 STACKS, MOVES = read(RAW)
 
-assert get_message(make_moves_9001(STACKS, MOVES)) == 'MCD'
+assert get_message(make_moves(STACKS, MOVES, singly=True)) == 'CMZ'
+
+assert get_message(make_moves(STACKS, MOVES)) == 'MCD'
 
 
 if __name__ == "__main__":
@@ -63,8 +51,9 @@ if __name__ == "__main__":
     with open('data/day05.txt') as f:
         stacks, moves = read(f.read())
 
-    part1 = get_message(make_moves(stacks, moves))
+    part1 = get_message(make_moves(stacks, moves, singly=True))
     print('Part 1:', part1)
+    assert part1 == 'ZSQVCCJLL'
 
-    part2 = get_message(make_moves_9001(stacks, moves))
+    part2 = get_message(make_moves(stacks, moves))
     print('Part 2:', part2)
