@@ -28,11 +28,11 @@ def read(raw) -> Iterable:
         moves.append(tuple(map(int, row.split()[1::2])))
     return [''] + [s.strip() for s in stacks], moves
 
-
 STACKS, MOVES = read(RAW)
 
 
 def make_moves(stacks, moves):
+    stacks = stacks.copy()
     for n, fra, til in moves:
         for _ in range(n):
             stacks[til] = stacks[fra][0] + stacks[til]
@@ -46,6 +46,7 @@ assert get_message(make_moves(STACKS, MOVES)) == 'CMZ'
 
 
 def make_moves_9001(stacks, moves):
+    stacks = stacks.copy()
     for n, fra, til in moves:
         grab = stacks[fra][:n]
         stacks[fra] = stacks[fra][n:]
@@ -64,10 +65,6 @@ if __name__ == "__main__":
 
     part1 = get_message(make_moves(stacks, moves))
     print('Part 1:', part1)
-
-    # Mutation!
-    with open('data/day05.txt') as f:
-        stacks, moves = read(f.read())
 
     part2 = get_message(make_moves_9001(stacks, moves))
     print('Part 2:', part2)
