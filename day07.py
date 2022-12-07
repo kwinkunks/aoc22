@@ -28,8 +28,10 @@ $ ls
 
 INPUT = RAW.splitlines()
 
+
 def parse(data: list[str]) -> dict:
-    """Parse the directory listings, accumulating the sizes of directories.
+    """
+    Parse the directory listings, accumulating the sizes of directories.
     Directories are marked in the data by a line starting with 'dir' followed
     by the name of the directory. Files are denoted by a line containing the
     file size followed by the file name.
@@ -53,9 +55,9 @@ def parse(data: list[str]) -> dict:
             sizes[tuple(path)] = sizes.get(tuple(path), 0) + int(size)
     return sizes
 
-
-def get_dir_sizes(sizes: dict) -> dict:
-    """Given a dictionary of directory sizes, return a dictionary of the
+def get_dir_sizes(sizes: dict[tuple[str], int]) -> dict:
+    """
+    Given a dictionary of directory sizes, return a dictionary of the
     sizes of each directory, including its subdirectories.
     """
     dirs: dict = {}
@@ -66,17 +68,19 @@ def get_dir_sizes(sizes: dict) -> dict:
             p.pop()
     return dirs
 
-
-def sum_small_dirs(dirs: dict, limit: int=100_000) -> int:
-    """Given a dictionary of directory sizes, return the total size of those directories
-    whose size is less than or equal to the given limit.
+def sum_small_dirs(dirs: dict[tuple[str, ...], int], limit: int=100_000) -> int:
     """
-    return sum(size for dir, size in dirs.items() if size <= limit)
+    Given a dictionary of directory sizes, return the total size of those
+    directories whose size is less than or equal to the given limit.
+    """
+    return sum(size for _, size in dirs.items() if size <= limit)
 
 assert sum_small_dirs(get_dir_sizes(parse(INPUT))) == 95437
 
-def find_smallest(dirs: dict, total: int, required: int) -> int:
-    """Given a dictionary of directory sizes, return the size of the smallest
+
+def find_smallest(dirs: dict[tuple[str, ...], int], total: int, required: int) -> int:
+    """
+    Given a dictionary of directory sizes, return the size of the smallest
     directory that is larger than the given required size.
     """
     freespace = total - dirs[('/',)]

@@ -14,12 +14,13 @@ Realizing that I almost never use classes for these things; will try to practice
 
 - Day 5 &mdash; Supply Stacks &mdash; reading the input data was fiddly, but the challenge itself was not hard... although I caught myself out briefly in Part 2 with unwanted mutation of the `stacks` in Part 1. Initially solved with separate functions but then refactored.
 - Day 6 &mdash; Tuning Trouble &mdash; maybe the easiest day so far, which bodes ill for tomorrow. Called for comparing sequences of characters, which I always do with `zip`. Maybe there's something better in `itertools`. Wonder if we'll see these sequences again? So much for using classes more, maybe it's true what they say about OOP...
+- Day 7 &mdash; No Space Left on Device &mdash; trees, my nemesis. Nemesises. Anyway, reverse engineering a directory tree from a command line session sounds quite tricky, but I got away with accumulating the file sizes only. Thought it might bite me in part 2, but no. Caught myself out by treating directory names as unique, which works on the sample but not on the real input.
 
 
 ## Things I learned about
 
 - [GitHub Codespaces](https://github.com/features/codespaces) is pretty cool.
-- [PEP 585](https://peps.python.org/pep-0585/) and type hinting since Python 3.9.
+- [PEP 585](https://peps.python.org/pep-0585/) and type hinting since Python 3.9, incl.uding lots of new (to me) syntax
 - [Enums](https://docs.python.org/3/library/enum.html) from watching [Joel Grus's solution](https://www.youtube.com/watch?v=Tbm4ycpq2ic); never really understood them before.
 
 
