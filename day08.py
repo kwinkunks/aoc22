@@ -8,7 +8,7 @@ RAW = """30373
 33549
 35390"""
 
-def parse(raw) -> list:
+def parse(raw: str) -> list:
     """Parse the input."""
     return [[int(n) for n in row]
             for row in raw.splitlines()]
@@ -16,12 +16,15 @@ def parse(raw) -> list:
 INPUT = parse(RAW)
 
 
-def rotate(grid):
-    """Rotate grid 90 degrees clockwise."""
+def rotate(grid: list[list[int]]) -> list[list[int]]:
+    """Rotate grid 90 degrees."""
     rot = list(zip(*reversed(grid)))
     return [list(row) for row in rot]
 
-def get_visible_dir(grid):
+def get_visible_dir(grid: list[list[int]]) -> list[list[int]]:
+    """
+    Get the trees visible from one direction (the left).
+    """
     vis_map = [[1] for row in grid]
     for row, vis_row in zip(grid, vis_map):
         highest = row[0]
@@ -36,7 +39,10 @@ def get_visible_dir(grid):
                 vis_row.append(0)
     return vis_map
 
-def get_visible(grid):
+def get_visible(grid: list[list[int]]) -> list[list[int]]:
+    """
+    Get visible trees from each direction and OR them.
+    """
     vis_map = [[0]*len(grid[0]) for row in grid]
     for _ in 'SENW':
         vis = get_visible_dir(grid)
@@ -47,12 +53,12 @@ def get_visible(grid):
         vis_map = rotate(vis_map)
     return vis_map
 
-def count_visible(grid):
+def count_visible(grid: list[list[int]]) -> int:
+    """Add up all the ones.
+    """
     vis_map = get_visible(grid)
     return sum(sum(row) for row in vis_map)
 
-print(get_visible(INPUT))
-print(count_visible(INPUT))
 assert count_visible(INPUT) == 21
 
 
@@ -63,5 +69,3 @@ if __name__ == "__main__":
 
     part1 = count_visible(data)
     print('Part 1:', part1)
-
-    assert part1 > 646
