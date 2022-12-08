@@ -19,7 +19,7 @@ INPUT = parse(RAW)
 def rotate(grid: list[list[int]]) -> list[list[int]]:
     """Rotate grid 90 degrees."""
     rot = list(zip(*reversed(grid)))
-    return [list(row) for row in rot]
+    return [list(row) for row in rot]  # Not sure why I end up with tuples here.
 
 def get_visible_row(row: list[int], vis_row: list[int], x: int=0) -> list[int]:
     """Get the visible trees in a row, starting at position x.
