@@ -1,6 +1,6 @@
 """
 Advent of Code 2022
-Day 6
+Day 7
 """
 RAW = """$ cd /
 $ ls
