@@ -5,6 +5,8 @@ It's [Advent of Code 2022](https://adventofcode.com/). No funny business this ye
 
 ## Diary
 
+⚠️ **Contains spoilers!**
+
 - [Day 1](day01.py) &mdash; Calorie Counting &mdash; the usual kind of warmup, with the only real issue being parsing the 'paragraph'-style input. For the main task, I initially had a silly function simply taking the max, then refactored to sum the top `n` elves.
 - [Day 2](day02.py) &mdash; Rock Paper Scissors &mdash; slightly fiddly RPS game, but the non-overlapping scores allow a hacky approach to Part 2, which essentially wants the inverse problem: the move corresponding to a given outcome. Used [GitHub Codespaces](https://github.com/features/codespaces) for the first time. Indirectly learned about enums from [Joel Grus](https://www.youtube.com/watch?v=Tbm4ycpq2ic).
 - [Day 3](day03.py) &mdash; Rucksack Reorganization &mdash; straightforward little bit of set theory. I thought it was heading for something more combinatorial in part 2 (like the rucksacks being out of order) but it's only day 3 I guess. Gotcha: missed that I was throwing newlines into all the strings when reading the data. Reminded later in a YouTube comment of [string.ascii_letters](https://docs.python.org/3/library/string.html#string.ascii_letters) which would be a nice way to score.
@@ -15,6 +17,7 @@ It's [Advent of Code 2022](https://adventofcode.com/). No funny business this ye
 - [Day 8](day08.py) &mdash; Treetop Tree House &mdash; the first grid of the year, always fun. Thought about 1st or 2nd derivatives for a minute, and not obvious how to do it with convolution, settled on brute force. Instead of fiddling with directions, I'm just doing the analysis from left to right and rotating the grid 4 times. Found the visibility logic a bit fiddly, but got there in the end.
 - [Day 9](day09.py) &mdash; Rope Bridge &mdash; coordinates and vectors! Which I usually enjoy... Part 1 was fine, fun even. Part 2 was a headache, utterly self-inflicted: I was applying the head update to every knot, as well as applying the 'follow previous knot' rule, but it took a ridiculous amount of time to see this. Sigh. Pleased with the tercity of the result though, and with a class too!
 - [Day 10](day10.py) &mdash; Cathode-Ray Tube &mdash; argh, it's the compiler, though I always enjoy the graphical solutions. Nearly got distracted by the fiddly timing rules, but in the end it was fine. Not pretty, I'm sure... if this thing comes back maybe we can clean up a bit. Side-note: quite enjoying using generators more often, though probably not idiomatically.
+- [Day 11](day11.py) &mdash; Monkey in the Middle &mdash; surprisingly enjoyable modulo arithmetic / number theory problem. Got a bit obsessed with the idea that the exponential monkey should be controlled (if prime p divides a<sup>2</sup> then it divides a) but then picked up on the "find another way to manage your worry level" clue.
 
 
 ## Things I learned about
